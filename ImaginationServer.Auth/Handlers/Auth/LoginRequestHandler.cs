@@ -42,15 +42,46 @@ namespace ImaginationServer.Auth.Handlers.Auth
                     case 0x01:
                         message = "was successful.";
                         break;
-                    case 0x06:
-                        message = "failed: invalid credentials.";
-                        break;
                     case 0x02:
-                        message = "failed: banned.";
+                        message = "failed: Banned.";
+                        break;
+                    case 0x05:
+                        message = "failed: Account permissions not high enough";
+                        // If a custom message is included in the packet it will be displayed in frontend, otherwise the message for “General Failed” will be shown
+                        break;
+                    case 0x06:
+                        message = "failed: Invalid Credentials.";
+                        break;
+                    case 0x07:
+                        message = "failed: Account is currently locked (wrong password entered too many times)";
+                        break;
+                    case 0x08:
+                        message = "failed: Invalid Username(?)";
+                        // 0x06 appeared in the logged traffic due to an invalid password
+                        break;
+                    case 0x09:
+                        message = "failed: Account Activation Pending";
+                        // Shows the same ingame message as 0x06/0x08
+                        break;
+                    case 0x0a:
+                        message = "failed: Account is disabled";
+                        // Shows the same ingame message as 0x06/0x08
+                        break;
+                    case 0x0b:
+                        message = "failed: Game Time Expired";
+                        break;
+                    case 0x0c:
+                        message = "failed: Free Trial Has Ended";
+                        break;
+                    case 0x0d:
+                        message = "failed: Play schedule not allowing it";
+                        break;
+                    case 0x0e:
+                        message = "failed: Account not activated";
                         break;
                     default:
                         WriteLine(
-                            "FATAL: Magically, the valid variable was not 0x01, 0x06, or 0x02! (How is that even possible..? I'm only checking because resharper is making me.)");
+                            "FATAL: Magically, the valid variable was not a recognized byte value! (How is that even possible..? I'm only checking because resharper is making me.)");
                         break;
                 }
 
