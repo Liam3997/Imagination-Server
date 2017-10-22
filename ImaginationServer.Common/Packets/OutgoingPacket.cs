@@ -1,4 +1,4 @@
-﻿using System.IO;
+﻿
 
 namespace ImaginationServer.Common.Packets
 {
@@ -12,13 +12,6 @@ namespace ImaginationServer.Common.Packets
             bitStream.Write(remoteConnection);
             bitStream.Write(packetId);
             bitStream.Write((byte)0);
-        }
-    }
-
-    public abstract class IncomingPacket
-    {
-        protected IncomingPacket(BinaryReader binaryReader)
-        {
         }
     }
 }
