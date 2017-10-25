@@ -1,3 +1,4 @@
+<img src="https://i.imgur.com/pL7Xgq6.png" width="200" height="200"></img>
 # Imagination-Server
 A C# server for LEGO Universe, that will (hopefully not?) die.
 
