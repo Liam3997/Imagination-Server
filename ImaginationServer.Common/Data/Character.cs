@@ -7,24 +7,14 @@ namespace ImaginationServer.Common.Data
         public virtual long Id { get; set; }
 
         public virtual string Owner { get; set; }
-        public virtual float[] Position { get; set; }
-        public virtual ushort ZoneId { get; set; }
-        public virtual ushort MapInstance { get; set; }
-        public virtual uint MapClone { get; set; }
-        public virtual uint Health { get; set; }
-        public virtual float MaxHealth { get; set; }
-        public virtual uint Armor { get; set; }
-        public virtual float MaxArmor { get; set; }
-        public virtual uint Imagination { get; set; }
-        public virtual float MaxImagination { get; set; }
+       
         public virtual int GmLevel { get; set; }
         public virtual long Reputation { get; set; }
-        public virtual int BackpackSpace { get; set; }
 
         public virtual string Name { get; set; }
-        public virtual uint Name1 { get; set; }
-        public virtual uint Name2 { get; set; }
-        public virtual uint Name3 { get; set; }
+        public virtual string FtpName { get; set; }
+        public virtual bool NameRejected { get; set; }
+        public virtual bool FreeToPlay { get; set; }
 
         public virtual uint ShirtColor { get; set; }
         public virtual uint ShirtStyle { get; set; }
@@ -40,6 +30,11 @@ namespace ImaginationServer.Common.Data
         public virtual IList<BackpackItem> Items { get; set; }
         public virtual uint Level { get; set; }
         public virtual IList<string> Missions { get; set; }
+
+        public virtual ushort LastZoneId { get; set; }
+        public virtual ushort MapInstance { get; set; }
+        public virtual uint MapClone { get; set; }
+        public virtual float[] Position { get; set; }
 
         public static long GetObjectId(Character character)
         {

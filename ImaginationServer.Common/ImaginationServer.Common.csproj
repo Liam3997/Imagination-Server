@@ -85,6 +85,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CharacterData\FtpNames.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Data\BackpackItem.cs" />
     <Compile Include="CdClientData\MissionMap.cs" />
@@ -104,7 +105,7 @@
     <Compile Include="Ldf.cs" />
     <Compile Include="LuClient.cs" />
     <Compile Include="LuServer.cs" />
-    <Compile Include="PacketEnums.cs" />
+    <Compile Include="Packets\PacketEnums.cs" />
     <Compile Include="Packets\IncomingPacket.cs" />
     <Compile Include="Packets\OutgoingPacket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

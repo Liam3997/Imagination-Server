@@ -10,26 +10,13 @@ namespace ImaginationServer.Common.Data
 
             Map(x => x.Owner);
 
-            Map(x => x.Name);
-            Map(x => x.Name1);
-            Map(x => x.Name2);
-            Map(x => x.Name3);
-
-            Map(x => x.ZoneId);
-            Map(x => x.MapInstance);
-            Map(x => x.MapClone);
-
-            Map(x => x.Position);
-            Map(x => x.Health);
-            Map(x => x.MaxHealth);
-            Map(x => x.Imagination);
-            Map(x => x.MaxImagination);
             Map(x => x.GmLevel);
             Map(x => x.Reputation);
-            Map(x => x.Level);
-            HasMany(x => x.Items).Cascade.All();
-            HasMany(x => x.Missions).Element("Mission").Cascade.AllDeleteOrphan();
-            Map(x => x.BackpackSpace);
+
+            Map(x => x.Name);
+            Map(x => x.FtpName);
+            Map(x => x.NameRejected);
+            Map(x => x.FreeToPlay);
 
             Map(x => x.ShirtColor);
             Map(x => x.ShirtStyle);
@@ -41,6 +28,15 @@ namespace ImaginationServer.Common.Data
             Map(x => x.Eyebrows);
             Map(x => x.Eyes);
             Map(x => x.Mouth);
+
+            HasMany(x => x.Items).Cascade.All();
+            Map(x => x.Level);
+            HasMany(x => x.Missions).Element("Mission").Cascade.AllDeleteOrphan();
+
+            Map(x => x.LastZoneId);
+            Map(x => x.MapInstance);
+            Map(x => x.MapClone);
+            Map(x => x.Position);
         }
     }
 }

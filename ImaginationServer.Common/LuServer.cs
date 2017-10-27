@@ -88,7 +88,17 @@ namespace ImaginationServer.Common
 
         protected override void OnDisconnect(string address)
         {
-            Clients.Remove(address);
+            LuClient disconnectedClient;
+            bool gotClient = Clients.TryGetValue(address, out disconnectedClient);
+            if (gotClient)
+            {
+                // TODO: Write Character Disconnect data for user?
+                Clients.Remove(address);
+            }
+            else
+            {
+                Console.WriteLine("Failed to get Client for IP {0}. Sorry boss, dunno what went wrong!", address);
+            }
             Console.WriteLine("Client of IP {0} left.", address);
         }
 

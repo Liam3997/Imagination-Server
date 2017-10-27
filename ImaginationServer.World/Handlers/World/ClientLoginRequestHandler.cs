@@ -33,18 +33,18 @@ namespace ImaginationServer.World.Handlers.World
                 client.OutOfChar = true;
 
                 Console.WriteLine("User has selected character {0}. Sending them to zone {1}.", character.Name,
-                    character.ZoneId);
+                    character.LastZoneId);
 
                 using (var bitStream = new WBitStream()) // Create the zone load packet
                 {
                     bitStream.WriteHeader(RemoteConnection.Client, (uint)MsgClientLoadStaticZone);
                     // Always write the header.
 
-                    bitStream.Write(character.ZoneId); // Write the zone id
+                    bitStream.Write(character.LastZoneId); // Write the zone id
                     bitStream.Write(character.MapInstance); // Write the map instance
                     bitStream.Write(character.MapClone); // Write the map clone
                     for (var i = 0; i < 4; i++)
-                        bitStream.Write(ZoneChecksums.Checksums[(ZoneId)character.ZoneId][i]); // Write the checksum
+                        bitStream.Write(ZoneChecksums.Checksums[(ZoneId)character.LastZoneId][i]); // Write the checksum
                     bitStream.Write((ushort)0); // ???
                     for (var i = 0; i < 3; i++) bitStream.Write(character.Position[i]); // Write the position
                     bitStream.Write((uint)0); // Supposed to be 4, if in battle...
@@ -54,7 +54,7 @@ namespace ImaginationServer.World.Handlers.World
                         WPacketReliability.ReliableOrdered, 0, client.Address, false);
 
                     Console.WriteLine(
-                        $"Sent world info to client - ZoneId = {character.ZoneId}, Map Instance = {character.MapInstance}, Map Clone = {character.MapClone}");
+                        $"Sent world info to client - LastZoneId = {character.LastZoneId}, Map Instance = {character.MapInstance}, Map Clone = {character.MapClone}");
                 }
 
                 // commented to make world single server

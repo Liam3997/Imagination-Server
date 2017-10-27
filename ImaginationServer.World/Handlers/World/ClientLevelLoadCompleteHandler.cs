@@ -47,7 +47,7 @@ namespace ImaginationServer.World.Handlers.World
                         ldf.WriteBool("freetrial", false);
                         ldf.WriteS32("gmlevel", character.GmLevel);
                         ldf.WriteBool("legoclub", true);
-                        var levelid = character.ZoneId + (((long) character.MapInstance) << 16) +
+                        var levelid = character.LastZoneId + (((long) character.MapInstance) << 16) +
                                       (((long) character.MapClone) << 32);
                         ldf.WriteS64("levelid", levelid);
                         ldf.WriteWString("name", character.Name);

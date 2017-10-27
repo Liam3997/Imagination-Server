@@ -6,6 +6,7 @@
 #include <RakPeerInterface.h>
 #include <iostream>
 #include <string>
+#include <iomanip>
 
 using namespace ImaginationServer::Common;
 using namespace ImaginationServer::Common::Data;
@@ -61,7 +62,7 @@ void ImaginationServerWorldPackets::WorldPackets::SendCharacterListResponse(Stri
 		bitStream.Write(character->Eyes); // Eyes
 		bitStream.Write(character->Mouth); // Mouth
 		bitStream.Write((unsigned long)0); // ???
-		bitStream.Write(character->ZoneId); // last zone ID
+		bitStream.Write(character->LastZoneId); // last zone ID
 		bitStream.Write(character->MapInstance); // (very likely) map instance
 		bitStream.Write((unsigned long)0); // map clone (name from [53-05-00-02] structure)
 		bitStream.Write((unsigned long long)0); // last login or logout timestamp of character in seconds? (xml is “llog” so both could be possible)
@@ -73,6 +74,23 @@ void ImaginationServerWorldPackets::WorldPackets::SendCharacterListResponse(Stri
 		}
 
 		charId++;
+	}
+
+	// For C++ RakNet BitStream printing
+	unsigned char * bytes = bitStream.GetData();
+	int rowNum = 1;
+	for (int i = 0; i != 816; i++)
+	{
+		std::cout <<
+			std::hex <<           // output in hex
+			std::setw(2) <<       // each byte prints as two characters
+			std::setfill('0') <<  // fill with 0 if not enough characters
+			static_cast<unsigned int>(bytes[i]);
+		if (i != 0 && i % (15 * rowNum + (rowNum - 1)) == 0) {
+			std::cout << std::endl;
+			rowNum++;
+		}
+		else std::cout << " ";
 	}
 	
 	auto split = address->Split(':');

@@ -24,11 +24,15 @@ namespace ImaginationServer.World.Handlers.World
 
                 var name = reader.ReadWString(66); // Read the name of the new character
                 reader.BaseStream.Position = 74; // Set the position to right after the username
-                var name1 = reader.ReadUInt32(); // Read
-                var name2 = reader.ReadUInt32(); // FTP
-                var name3 = reader.ReadUInt32(); // Names
+                var ftpName1 = reader.ReadUInt32(); // Read
+                var ftpName2 = reader.ReadUInt32(); // FTP
+                var ftpName3 = reader.ReadUInt32(); // Names
 
-                // TODO: Implement FTP names
+                // FTP Temp names
+                var ftpName = FtpNames.FirstNames[ftpName1] + FtpNames.MiddleNames[ftpName2] +
+                              FtpNames.LastNames[ftpName3];
+
+                // TODO: Have it automatically delete the ftpName if the server owner wants names to be auto-approved
 
                 reader.ReadBytes(9); // Read 9 ... unknown bytes?
 
@@ -59,40 +63,34 @@ namespace ImaginationServer.World.Handlers.World
                     // Create the new character
                     var character = new Character
                     {
+                        Owner = client.Username,
+                        GmLevel = 0,
+                        Reputation = 100,
                         Name = name,
-                        Eyebrows = eyebrows,
-                        Eyes = eyes,
-                        HairColor = hairColor,
-                        HairStyle = hairStyle,
-                        Lh = lh,
-                        Rh = rh,
-                        Mouth = mouth,
-                        Name1 = name1,
-                        Name2 = name2,
-                        Name3 = name3,
-                        PantsColor = pantsColor,
+                        FtpName = ftpName,
+                        NameRejected = false,
+                        FreeToPlay = false,
                         ShirtColor = shirtColor,
                         ShirtStyle = shirtStyle,
+                        PantsColor = pantsColor,
+                        HairStyle = hairStyle,
+                        HairColor = hairColor,
+                        Lh = lh,
+                        Rh = rh,
+                        Eyebrows = eyebrows,
+                        Eyes = eyes,
+                        Mouth = mouth,
                         // Initialize the other character data
-                        Position = ZonePositions.VentureExplorer,
-                        Owner = client.Username,
+                        Items = new List<BackpackItem>(),
+                        Level = 0,
+                        Missions = new List<string>(),
+                        LastZoneId = (ushort) ZoneId.VentureExplorer,
                         MapInstance = 0,
                         MapClone = 0,
-                        ZoneId = (ushort) ZoneId.VentureExplorer,
-                        Armor = 0,
-                        MaxArmor = 0,
-                        Health = 4,
-                        MaxHealth = 4,
-                        Imagination = 0,
-                        MaxImagination = 0,
-                        GmLevel = 0,
-                        Reputation = 0,
-                        Items = new List<BackpackItem>(),
-                        BackpackSpace = 20,
-                        Level = 0,
-                        Missions = new List<string>()
+                        Position = ZonePositions.VentureExplorer,
                     };
 
+                    // TODO: Initial items? Pants?
                     character.Items.Add(
                         new BackpackItem
                         {

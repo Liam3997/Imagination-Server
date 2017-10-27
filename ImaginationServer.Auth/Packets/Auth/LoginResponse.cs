@@ -14,14 +14,14 @@ namespace ImaginationServer.Auth.Packets.Auth
         public byte SuccessCode { get; } // This is the Connection ID
         public string UserKey { get; } // Generated User Key
 
-        // These are all from previous C++ data
+        // These are all from previous LUNI C++ data
         public string TalkLikeAPirate { get; } = "Talk_Like_A_Pirate"; // Always is "Talk_Like_A_Pirate", yet 33 bytes long
         public string UnknownString { get; } = ""; // Have NO idea what this is... Is it relevant?
         // TODO: Does sending proper ClientVersion matter eventually...?
         public ushort ClientVersion1 { get; } = 1; // For some reason, the client version is split up over 3 unsigned shorts
         public ushort ClientVersion2 { get; } = 10;
         public ushort ClientVersion3 { get; } = 64;
-        public string Unknown { get; } = "_"; // This is 237 bytes long...
+        public string Unknown { get; } = "_";
         // TODO: These IPs probably need to be configurable eventually
         public string RedirectIp { get; } = "localhost"; // Redirect IP Address
         public string ChatIp { get; } = "localhost"; // Chat IP Address
@@ -52,7 +52,7 @@ namespace ImaginationServer.Auth.Packets.Auth
         {
             using (var bitStream = new WBitStream())
             {
-                bitStream.WriteHeader(PacketEnums.RemoteConnection.Client, 0);
+                bitStream.WriteHeader(PacketEnums.RemoteConnection.Client, (uint) PacketEnums.WorldServerPacketId.MsgClientLoginResponse);
 
                 bitStream.Write(SuccessCode);
                 bitStream.WriteString(TalkLikeAPirate, 33);
