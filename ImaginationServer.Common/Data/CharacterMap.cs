@@ -14,7 +14,7 @@ namespace ImaginationServer.Common.Data
             Map(x => x.Reputation);
 
             Map(x => x.Name);
-            Map(x => x.FtpName);
+            Map(x => x.UnapprovedName);
             Map(x => x.NameRejected);
             Map(x => x.FreeToPlay);
 

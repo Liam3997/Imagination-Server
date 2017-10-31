@@ -14,10 +14,13 @@ namespace ImaginationServer.World
         public static void Init(string address)
         {
             Server = new LuServer(2006, 1000, address);
+
             Server.AddHandler((ushort) RemoteConnection.World, (uint) MsgWorldClientValidation,
                 new ClientValidationHandler());
             Server.AddHandler((ushort) RemoteConnection.World, (uint) MsgWorldClientLoginRequest,
                 new ClientLoginRequestHandler());
+
+            #region Character Handlers
             Server.AddHandler((ushort) RemoteConnection.World, (uint) MsgWorldClientCharacterListRequest,
                 new CharacterListRequestHandler());
             Server.AddHandler((ushort) RemoteConnection.World, (uint) MsgWorldClientCharacterCreateRequest,
@@ -26,12 +29,15 @@ namespace ImaginationServer.World
                 new ClientCharacterDeleteRequestHandler());
             Server.AddHandler((ushort) RemoteConnection.World, (uint) MsgWorldClientCharacterRenameRequest,
                 new ClientCharacterRenameRequestHandler());
+            #endregion
+
             Server.AddHandler((ushort) RemoteConnection.World, (uint) MsgWorldClientLevelLoadComplete,
                 new ClientLevelLoadCompleteHandler());
             Server.AddHandler((ushort) RemoteConnection.World, (uint) MsgWorldClientGameMsg,
                 new ClientGameMsgHandler());
             Server.AddHandler((ushort) RemoteConnection.World, (uint) MsgWorldClientRoutePacket,
                 new ClientRoutePacketHandler());
+
             Server.Start(Config.Current.EncryptPackets);
         }
 

@@ -12,7 +12,7 @@ namespace ImaginationServer.Common.Data
         public virtual long Reputation { get; set; }
 
         public virtual string Name { get; set; }
-        public virtual string FtpName { get; set; }
+        public virtual string UnapprovedName { get; set; }
         public virtual bool NameRejected { get; set; }
         public virtual bool FreeToPlay { get; set; }
 

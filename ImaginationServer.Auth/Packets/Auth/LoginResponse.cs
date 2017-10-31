@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ImaginationServer.Common;
+using ImaginationServer.Common.Packets;
 
 namespace ImaginationServer.Auth.Packets.Auth
 {
-    public class LoginResponse
+    public class LoginResponse : OutgoingPacket
     {
         // Get these in constructor
         public byte SuccessCode { get; } // This is the Connection ID
@@ -48,7 +49,7 @@ namespace ImaginationServer.Auth.Packets.Auth
             UserKey = userKey;
         }
 
-        public void Send(string clientAddress)
+        public override void Send(string clientAddress)
         {
             using (var bitStream = new WBitStream())
             {
@@ -85,7 +86,7 @@ namespace ImaginationServer.Auth.Packets.Auth
                 bitStream.Write(Subscribed);
                 bitStream.Write(ZeroLong);
                 bitStream.Write(ErrorMsgLength);
-                // TODO: Probably need to write the proper length of chars here eventually
+                // TODO: Probably need to write the proper length of chars here eventually if own error messages are sent
                 bitStream.WriteString(ErrorMsg, 0, 0);
 
                 bitStream.Write(ExtraBytesLength);
