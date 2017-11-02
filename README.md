@@ -11,7 +11,8 @@ Current goals for the project are:
 * Build a fully functioning Lego Universe server emulator
 * Build an emulator that can be used by anybody to host their own personal LU servers
 * Build a GUI and guide for the emulator that will enable users with little technical know-how to run their own personal LU servers
-* Remain completely, 100% open-source, for anybody to contribute to
+* Remain completely, 100% open-source, for anybody to contribute to. If you want to contribute, [you can get started here](https://github.com/Liam3997/Imagination-Server/wiki/Contribution-Guide)!
+* Bring together anyone who loves LU and wants to help it come back to life
 * Introduce some new faces to the LU development community and the LU community in general!
 
 ## More Info
@@ -25,16 +26,16 @@ ImaginationServer.Common - Base C# server code shared between servers
 ImaginationServer.Auth - Authentication server, and has commands  
 ImaginationServer.Auth.Packets - Login Packets, now in C#!  
 ImaginationServer.World - World server  
-ImaginationServer.World.Packets - Same as .Auth.Packets, except for world.
+ImaginationServer.World.Packets - Same as .Auth.Packets, except for world
 ### Utilities
 sd0 utils: (Broken) sd0 compressor/decompressor (Possibly will be removed soon...)
 ### Other
-ImaginationServer.SingleServer - Application that runs the Auth and World servers.  
+ImaginationServer.SingleServer - Application that runs the Auth and World servers  
 ImaginationServer.GameLauncher - A launcher/patcher for LU, allows switching boot.cfg with a few clicks (not implemented)  
 ImaginationServer.ControlPanel - Same as single server, but with a GUI (not implemented)
 
 ## Permissions
-Permission has been granted by MicleBrick, both through Discord and through his licensing choices, to use his original code to build this server.  
+Permission has been granted by MicleBrick, both through Discord and through his licensing choices, to use his original code to build this server  
 This project also operates under the provisions [made by Lego to the original LUNI project](http://timtechsoftware.com/wp-content/uploads/2014/09/LU-official.png), that such server emulation is allowed provided that no Lego copyright is infringed and a disclaimer (seen at the top of this README) is provided when referring to the project
 
 ## License
