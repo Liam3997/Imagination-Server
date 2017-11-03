@@ -17,7 +17,7 @@ namespace ImaginationServer.World.Handlers.World
                 Console.WriteLine("Received Login Request from {0} - ObjectID = {1}", client.Address, objectId);
 
                 var account = database.GetAccount(client.Username); // Get the account.
-                var character = database.GetCharacter(objectId, true);
+                var character = database.GetCharacter(objectId);
 
                 if (!string.Equals(character.Owner, account.Username, StringComparison.CurrentCultureIgnoreCase))
                     // Make sure they selected their own character
@@ -47,11 +47,12 @@ namespace ImaginationServer.World.Handlers.World
                         bitStream.Write(ZoneChecksums.Checksums[(ZoneId)character.LastZoneId][i]); // Write the checksum
                     bitStream.Write((ushort)0); // ???
                     for (var i = 0; i < 3; i++) bitStream.Write(character.Position[i]); // Write the position
-                    bitStream.Write((uint)0); // Supposed to be 4, if in battle...
+                    bitStream.Write((uint)0); // Supposed to be 4, if Activity World
 
                     // Send the packet
                     WorldServer.Server.Send(bitStream, WPacketPriority.SystemPriority,
                         WPacketReliability.ReliableOrdered, 0, client.Address, false);
+                    File.WriteAllBytes("Temp/" + character.Name + ".loginRequest.bin", bitStream.GetBytes());
 
                     Console.WriteLine(
                         $"Sent world info to client - LastZoneId = {character.LastZoneId}, Map Instance = {character.MapInstance}, Map Clone = {character.MapClone}");

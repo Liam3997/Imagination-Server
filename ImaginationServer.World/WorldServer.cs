@@ -15,10 +15,9 @@ namespace ImaginationServer.World
         {
             Server = new LuServer(2006, 1000, address);
 
+            // Validates when the user logs in and is shown the Character List
             Server.AddHandler((ushort) RemoteConnection.World, (uint) MsgWorldClientValidation,
                 new ClientValidationHandler());
-            Server.AddHandler((ushort) RemoteConnection.World, (uint) MsgWorldClientLoginRequest,
-                new ClientLoginRequestHandler());
 
             #region Character Handlers
             Server.AddHandler((ushort) RemoteConnection.World, (uint) MsgWorldClientCharacterListRequest,
@@ -30,6 +29,9 @@ namespace ImaginationServer.World
             Server.AddHandler((ushort) RemoteConnection.World, (uint) MsgWorldClientCharacterRenameRequest,
                 new ClientCharacterRenameRequestHandler());
             #endregion
+
+            Server.AddHandler((ushort)RemoteConnection.World, (uint)MsgWorldClientLoginRequest,
+                new ClientLoginRequestHandler());
 
             Server.AddHandler((ushort) RemoteConnection.World, (uint) MsgWorldClientLevelLoadComplete,
                 new ClientLevelLoadCompleteHandler());

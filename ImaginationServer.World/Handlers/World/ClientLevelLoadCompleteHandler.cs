@@ -66,10 +66,34 @@ namespace ImaginationServer.World.Handlers.World
                             WPacketReliability.ReliableOrdered, 0, client.Address, false);
                         File.WriteAllBytes("Temp/" + character.Name + ".world_2a.bin", bitStream.GetBytes());
                     }
+
+                    var playerObject = new PlayerObject(Character.GetObjectId(character), character.Name);
+
+                    playerObject.GmLevel = (byte) character.GmLevel;
+                    playerObject.Zone = (ushort) zone;
+
+                    // TODO: Check zone and position
+                    playerObject.ControllablePhysicsComponent.SetPosition(character.Position[0], character.Position[1], character.Position[2]);
+
+                    playerObject.CharacterComponent.SetLevel(character.Level);
+                    playerObject.CharacterComponent.SetInfo((ulong) character.Id, character.FreeToPlay, 0);
+                    playerObject.CharacterComponent.SetStyle(character.HairColor, character.HairStyle, 0, character.ShirtColor, character.PantsColor, 
+                        0, 0, character.Eyebrows, character.Eyes, character.Mouth);
+
+                    // TODO: Destructible Component
+
+                    // TODO: Inventory Component
+
+                    // TODO: Object Manager?
+
+                    playerObject.Construct(WorldServer.Server, client.Address);
                 }
 
                 WorldServer.Server.SendGameMessage(client.Address, Character.GetObjectId(character), 1642);
                 WorldServer.Server.SendGameMessage(client.Address, Character.GetObjectId(character), 509);
+
+                // TODO: Special item effect stuff?
+
                 using (var gameMessage = LuServer.CreateGameMessage(Character.GetObjectId(character), 472))
                 {
                     gameMessage.Write((uint) 185);
@@ -78,8 +102,7 @@ namespace ImaginationServer.World.Handlers.World
                         WPacketReliability.ReliableOrdered, 0, client.Address, false);
                 }
 
-                var playerObject = new PlayerObject(Character.GetObjectId(character), character.Name);
-                playerObject.Construct(WorldServer.Server, client.Address);
+                // TODO: Resurrect character
             }
         }
 
@@ -102,14 +125,18 @@ namespace ImaginationServer.World.Handlers.World
                 xml += "<items>";
                 xml += "<in>";
 
-                // TODO: Write items
-
-                //foreach (var item in character.Items)
-                //{
-                //    writer.WriteStartElement("i"); // <i>
-                //    writer.WriteAttributeString("l", item.);
-                //    writer.WriteEndElement(); // </i>
-                //}
+                foreach (var item in character.Items)
+                {
+                    xml += $"<i l=\"{item.Lot}\" id=\"{item.Id}\" s=\"{item.Slot}\"";
+                    // TODO: Something about quantity here in LUNI, definitely need that later
+                    // TODO: Something about SpawnerId here in LUNI...need it later?
+                    if (item.Linked)
+                    {
+                        xml += " b=\"1\"";
+                    }
+                    // TODO: There will be a body if there's spawnerId, so make sure the right closer is written
+                    xml += "/>";
+                }
 
                 xml += "</in>";
                 xml += "</items>";
@@ -127,7 +154,6 @@ namespace ImaginationServer.World.Handlers.World
 
                 if (character.Missions?.Any() ?? false)
                 {
-                    xml += "<mis>";
                     xml += "<done>";
                     xml = character.Missions.Select(mission => CharacterMission.FromJson(mission)).Aggregate(xml, (current, missionData) => current + $"<m id=\"{missionData.Id}\" cts=\"{missionData.Timestamp}\" cct=\"{missionData.Count}\"/>");
                     xml += "</done>";

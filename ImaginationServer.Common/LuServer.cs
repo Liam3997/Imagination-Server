@@ -97,7 +97,7 @@ namespace ImaginationServer.Common
             }
             else
             {
-                Console.WriteLine("Failed to get Client for IP {0}. Sorry boss, dunno what went wrong!", address);
+                Console.WriteLine("Failed to get Client for IP {0} when it tried to disconnect", address);
             }
             Console.WriteLine("Client of IP {0} left.", address);
         }

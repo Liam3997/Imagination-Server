@@ -128,6 +128,14 @@ namespace ImaginationServer.World.Replica.Components
             return 1;
         }
 
+        public void SetPosition(float x, float y, float z)
+        {
+            Data6.PosX = x;
+            Data6.PosY = y;
+            Data6.PosZ = z;
+            Flag6 = true;
+        }
+
         #region Creation only
 
         public bool Flag1 { get; set; }
@@ -138,14 +146,14 @@ namespace ImaginationServer.World.Replica.Components
         #endregion
     }
 
-    public struct Data1
+    public class Data1
     {
         public uint D1 { get; set; }
         public bool D2 { get; set; }
         public bool D3 { get; set; }
     }
 
-    public struct Data2
+    public class Data2
     {
         public uint D1 { get; set; }
         public uint D2 { get; set; }
@@ -156,26 +164,26 @@ namespace ImaginationServer.World.Replica.Components
         public uint D7 { get; set; }
     }
 
-    public struct Data3
+    public class Data3
     {
         public float D1 { get; set; }
         public float D2 { get; set; }
     }
 
-    public struct Data4
+    public class Data4
     {
         public uint D1 { get; set; }
         public bool D2 { get; set; }
     }
 
-    public struct Data5
+    public class Data5
     {
         public bool Flag { get; set; }
         public uint D1 { get; set; }
         public bool D2 { get; set; }
     }
 
-    public struct Data6
+    public class Data6
     {
         public float PosX { get; set; }
         public float PosY { get; set; }

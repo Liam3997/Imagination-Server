@@ -91,6 +91,10 @@
     <Content Include="Imagination Server Logo.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ImaginationServer.Auth\ImaginationServer.Auth.csproj">
+      <Project>{790BC5EC-B631-443E-B2ED-8C154E84B52B}</Project>
+      <Name>ImaginationServer.Auth</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ImaginationServer.Common\ImaginationServer.Common.csproj">
       <Project>{9E791210-0A94-428D-B483-46EB198942E2}</Project>
       <Name>ImaginationServer.Common</Name>
