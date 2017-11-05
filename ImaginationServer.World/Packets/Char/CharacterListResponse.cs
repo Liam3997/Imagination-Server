@@ -4,6 +4,8 @@ using System.IO;
 using ImaginationServer.Common;
 using ImaginationServer.Common.Data;
 using ImaginationServer.Common.Packets;
+using ImaginationServer.Enums;
+using ImaginationServer.SQL_DB;
 
 namespace ImaginationServer.World.Packets.Char
 {

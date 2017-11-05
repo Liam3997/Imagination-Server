@@ -8,6 +8,7 @@ using ImaginationServer.Common;
 using ImaginationServer.Common.CharacterData;
 using ImaginationServer.Common.Data;
 using ImaginationServer.Common.Packets;
+using ImaginationServer.Enums;
 
 namespace ImaginationServer.World.Packets.Char
 {
@@ -69,6 +70,7 @@ namespace ImaginationServer.World.Packets.Char
                 Items = new List<BackpackItem>(),
                 Level = 0,
                 Missions = new List<string>(),
+                // TODO: This should actually be set to 0 so the intro cinematic will play
                 LastZoneId = (ushort)ZoneId.VentureExplorer,
                 MapInstance = 0,
                 MapClone = 0,

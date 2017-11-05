@@ -3,6 +3,7 @@ using FluentNHibernate.Cfg;
 using ImaginationServer.Auth;
 using ImaginationServer.Common;
 using ImaginationServer.World;
+using ImaginationServer.SQL_DB;
 
 namespace ImaginationServer.SingleServer
 {

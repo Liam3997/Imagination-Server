@@ -5,8 +5,9 @@ using ImaginationServer.Auth.Handlers.Auth;
 using ImaginationServer.Common;
 using Newtonsoft.Json;
 using static System.Console;
-using static ImaginationServer.Common.PacketEnums;
-using static ImaginationServer.Common.PacketEnums.ClientAuthPacketId;
+using static ImaginationServer.Enums.PacketEnums;
+using static ImaginationServer.Enums.PacketEnums.ClientAuthPacketId;
+using ImaginationServer.SQL_DB;
 
 namespace ImaginationServer.Auth
 {

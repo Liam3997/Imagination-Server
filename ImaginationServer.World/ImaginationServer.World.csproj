@@ -91,6 +91,10 @@
     <Content Include="Imagination Server Logo.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ImaginationServer.Auth\ImaginationServer.Auth.csproj">
+      <Project>{790bc5ec-b631-443e-b2ed-8c154e84b52b}</Project>
+      <Name>ImaginationServer.Auth</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ImaginationServer.Common\ImaginationServer.Common.csproj">
       <Project>{9E791210-0A94-428D-B483-46EB198942E2}</Project>
       <Name>ImaginationServer.Common</Name>
@@ -98,6 +102,18 @@
     <ProjectReference Include="..\ImaginationServer.Core\ImaginationServer.Core.vcxproj">
       <Project>{b556a656-2380-4e15-9fa9-25d555ae0fcc}</Project>
       <Name>ImaginationServer.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ImaginationServer.Enums\ImaginationServer.Enums.csproj">
+      <Project>{4d0d6754-e1ef-4f16-912e-60c3ff5ef6ff}</Project>
+      <Name>ImaginationServer.Enums</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ImaginationServer.SQL_DB\ImaginationServer.SQL_DB.csproj">
+      <Project>{99ca5ac9-b973-4cb3-acb7-5aa654bc34a1}</Project>
+      <Name>ImaginationServer.SQL_DB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utils\ImaginationServer.Utils.csproj">
+      <Project>{8A989573-565E-4579-AC64-5FA99F51C092}</Project>
+      <Name>ImaginationServer.Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

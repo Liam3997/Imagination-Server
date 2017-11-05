@@ -1,7 +1,8 @@
 ﻿using ImaginationServer.Common;
 using ImaginationServer.Common.Data;
 using ImaginationServer.Common.Packets;
-using static ImaginationServer.Common.PacketEnums.WorldServerPacketId;
+using ImaginationServer.Enums;
+using static ImaginationServer.Enums.PacketEnums.WorldServerPacketId;
 using static WPacketPriority;
 using static WPacketReliability;
 

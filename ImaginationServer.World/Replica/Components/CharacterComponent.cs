@@ -2,8 +2,11 @@
 {
     public class CharacterComponent : ReplicaComponent
     {
+        public bool Flag1 { get; set; }
         public Index1 IndexOne { get; set; }
+        public bool Flag2 { get; set; }
         public Index2 IndexTwo { get; set; }
+        public bool Flag3 { get; set; }
         public Index3 IndexThree { get; set; }
         public Index4 IndexFour { get; set; }
 
@@ -13,18 +16,18 @@
             bitStream.Write(IndexOne.Flag);
             if (IndexOne.Flag)
             {
-                bitStream.Write(IndexOne.Data.Flag);
-                if (IndexOne.Data.Flag) bitStream.Write(IndexOne.Data.VehicleObjectId);
-                bitStream.Write(IndexOne.Data.Unknown);
+                bitStream.Write(Flag1);
+                if (Flag1) bitStream.Write(IndexOne.VehicleObjectId);
+                bitStream.Write(IndexOne.Unknown);
             }
 
             // Index 2
-            bitStream.Write(IndexTwo.Flag);
-            if(IndexTwo.Flag) bitStream.Write(IndexTwo.Level);
+            bitStream.Write(Flag2);
+            if (Flag2) bitStream.Write(IndexTwo.Level);
 
             // Index 3
-            bitStream.Write(IndexThree.Flag);
-            if (IndexThree.Flag)
+            bitStream.Write(Flag3);
+            if (Flag3)
             {
                 bitStream.Write(IndexThree.Unknown1);
                 bitStream.Write(IndexThree.Unknown2);
@@ -79,32 +82,59 @@
             return 4;
         }
 
-        public struct Index1
+        public void SetLevel(uint level)
         {
-            public bool Flag { get; set; }
-            public Data1 Data { get; set; }
-            public struct Data1
-            {
-                public bool Flag { get; set; }
-                public long VehicleObjectId { get; set; }
-                public ushort Unknown { get; set; }
-            }
+            IndexTwo.HasLevel = true;
+            IndexTwo.Level = level;
         }
 
-        public struct Index2
+        public void SetInfo(ulong accountId, bool freeToPlay, ulong legoScore)
+        {
+            IndexFour.AccountId = accountId;
+            IndexFour.FreeToPlay = freeToPlay;
+            IndexFour.LegoScore = legoScore;
+        }
+
+        public void SetStyle(uint hairColor, uint hairStyle, uint hdHdc, uint shirtColor, uint pantsColor, uint cd,
+            uint hdcHd, uint eyebrowsStyle, uint eyesStyle, uint mouthStyle)
+        {
+            IndexFour.HairColor = hairColor;
+            IndexFour.HairStyle = hairStyle;
+            IndexFour.Unknown5 = hdHdc;
+            IndexFour.ShirtColor = shirtColor;
+            IndexFour.PantsColor = pantsColor;
+            IndexFour.Unknown6 = cd;
+            IndexFour.Unknown7 = hdcHd;
+            IndexFour.EyebrowsStyle = eyebrowsStyle;
+            IndexFour.EyesStyle = eyesStyle;
+            IndexFour.MouthStyle = mouthStyle;
+        }
+
+        public void SetStats()
+        {
+            // TODO
+        }
+
+        public class Index1
         {
             public bool Flag { get; set; }
+            public long VehicleObjectId { get; set; }
+            public ushort Unknown { get; set; }
+        }
+
+        public class Index2
+        {
+            public bool HasLevel { get; set; }
             public uint Level { get; set; }
         }
 
-        public struct Index3
+        public class Index3
         {
-            public bool Flag { get; set; }
             public bool Unknown1 { get; set; }
             public bool Unknown2 { get; set; }
         }
 
-        public struct Index4
+        public class Index4
         {
             public bool Flag1 { get; set; }
             public ulong Unknown1 { get; set; }
@@ -127,8 +157,8 @@
             public uint MouthStyle { get; set; }
             public ulong AccountId { get; set; }
             public ulong Llog { get; set; }
-            public uint Unknown8 { get; set; }
-            public uint LegoScore { get; set; }
+            public ulong Unknown8 { get; set; }
+            public ulong LegoScore { get; set; }
             public bool FreeToPlay { get; set; }
 
             #region stats

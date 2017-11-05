@@ -8,6 +8,7 @@ using ImaginationServer.Auth.Packets.Auth;
 using ImaginationServer.Common;
 using ImaginationServer.Common.Handlers;
 using static System.Console;
+using ImaginationServer.SQL_DB;
 
 namespace ImaginationServer.Auth.Handlers.Auth
 {

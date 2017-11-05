@@ -17,7 +17,9 @@ public:
 	String^ Name;
 	unsigned long Lot;
 	unsigned char GmLevel = 0;
-	unsigned short World;
+	unsigned short Zone = 0;
+	unsigned short Instance = 0;
+	unsigned long Clone = 0;
 
 	ReplicaObject(BaseServer^ server);
 	~ReplicaObject();

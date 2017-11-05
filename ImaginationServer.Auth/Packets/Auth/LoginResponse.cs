@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ImaginationServer.Common;
 using ImaginationServer.Common.Packets;
+using ImaginationServer.Enums;
 
 namespace ImaginationServer.Auth.Packets.Auth
 {

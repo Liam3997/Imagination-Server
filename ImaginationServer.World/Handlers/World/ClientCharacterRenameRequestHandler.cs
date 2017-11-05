@@ -3,8 +3,9 @@ using System.IO;
 using ImaginationServer.Common;
 using ImaginationServer.Common.Handlers;
 using ImaginationServer.World.Packets.Char;
-using static ImaginationServer.Common.PacketEnums;
-using static ImaginationServer.Common.PacketEnums.WorldServerPacketId;
+using static ImaginationServer.Enums.PacketEnums;
+using static ImaginationServer.Enums.PacketEnums.WorldServerPacketId;
+using ImaginationServer.SQL_DB;
 
 namespace ImaginationServer.World.Handlers.World
 {

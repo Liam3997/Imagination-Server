@@ -2,8 +2,10 @@
 using System.IO;
 using ImaginationServer.Common;
 using ImaginationServer.Common.Handlers;
-using static ImaginationServer.Common.PacketEnums;
-using static ImaginationServer.Common.PacketEnums.WorldServerPacketId;
+using static ImaginationServer.Enums.PacketEnums;
+using static ImaginationServer.Enums.PacketEnums.WorldServerPacketId;
+using ImaginationServer.SQL_DB;
+using ImaginationServer.Enums;
 
 namespace ImaginationServer.World.Handlers.World
 {
@@ -17,10 +19,10 @@ namespace ImaginationServer.World.Handlers.World
                 Console.WriteLine("Received Login Request from {0} - ObjectID = {1}", client.Address, objectId);
 
                 var account = database.GetAccount(client.Username); // Get the account.
-                var character = database.GetCharacter(objectId, true);
+                var character = database.GetCharacter(objectId);
 
                 if (!string.Equals(character.Owner, account.Username, StringComparison.CurrentCultureIgnoreCase))
-                    // Make sure they selected their own character
+                // Make sure they selected their own character
                 {
                     Console.WriteLine("USER {0} SENT OBJECT ID THAT IS NOT ONE OF THEIR CHARACTER'S!!!", client.Username);
                     // TODO: Kick user
@@ -47,11 +49,12 @@ namespace ImaginationServer.World.Handlers.World
                         bitStream.Write(ZoneChecksums.Checksums[(ZoneId)character.LastZoneId][i]); // Write the checksum
                     bitStream.Write((ushort)0); // ???
                     for (var i = 0; i < 3; i++) bitStream.Write(character.Position[i]); // Write the position
-                    bitStream.Write((uint)0); // Supposed to be 4, if in battle...
+                    bitStream.Write((uint)0); // Supposed to be 4, if Activity World
 
                     // Send the packet
                     WorldServer.Server.Send(bitStream, WPacketPriority.SystemPriority,
                         WPacketReliability.ReliableOrdered, 0, client.Address, false);
+                    File.WriteAllBytes("Temp/" + character.Name + ".loginRequest.bin", bitStream.GetBytes());
 
                     Console.WriteLine(
                         $"Sent world info to client - LastZoneId = {character.LastZoneId}, Map Instance = {character.MapInstance}, Map Clone = {character.MapClone}");

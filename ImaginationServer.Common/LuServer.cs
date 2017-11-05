@@ -4,8 +4,8 @@ using System.IO;
 using System.Text;
 using ImaginationServer.Common.Handlers;
 using ImaginationServer.Common.Handlers.Server;
-using static ImaginationServer.Common.PacketEnums;
-using static ImaginationServer.Common.PacketEnums.ServerPacketId;
+using static ImaginationServer.Enums.PacketEnums;
+using static ImaginationServer.Enums.PacketEnums.ServerPacketId;
 
 namespace ImaginationServer.Common
 {
@@ -97,7 +97,7 @@ namespace ImaginationServer.Common
             }
             else
             {
-                Console.WriteLine("Failed to get Client for IP {0}. Sorry boss, dunno what went wrong!", address);
+                Console.WriteLine("Failed to get Client for IP {0} when it tried to disconnect", address);
             }
             Console.WriteLine("Client of IP {0} left.", address);
         }

@@ -2,8 +2,8 @@
 using ImaginationServer.Common;
 using ImaginationServer.World.Handlers.World;
 using ImaginationServer.World.Replica.Objects;
-using static ImaginationServer.Common.PacketEnums;
-using static ImaginationServer.Common.PacketEnums.ClientWorldPacketId;
+using static ImaginationServer.Enums.PacketEnums;
+using static ImaginationServer.Enums.PacketEnums.ClientWorldPacketId;
 
 namespace ImaginationServer.World
 {
@@ -15,27 +15,29 @@ namespace ImaginationServer.World
         {
             Server = new LuServer(2006, 1000, address);
 
-            Server.AddHandler((ushort) RemoteConnection.World, (uint) MsgWorldClientValidation,
+            // Validates when the user logs in and is shown the Character List
+            Server.AddHandler((ushort)RemoteConnection.World, (uint)MsgWorldClientValidation,
                 new ClientValidationHandler());
-            Server.AddHandler((ushort) RemoteConnection.World, (uint) MsgWorldClientLoginRequest,
-                new ClientLoginRequestHandler());
 
             #region Character Handlers
-            Server.AddHandler((ushort) RemoteConnection.World, (uint) MsgWorldClientCharacterListRequest,
+            Server.AddHandler((ushort)RemoteConnection.World, (uint)MsgWorldClientCharacterListRequest,
                 new CharacterListRequestHandler());
-            Server.AddHandler((ushort) RemoteConnection.World, (uint) MsgWorldClientCharacterCreateRequest,
+            Server.AddHandler((ushort)RemoteConnection.World, (uint)MsgWorldClientCharacterCreateRequest,
                 new ClientCharacterCreateRequestHandler());
-            Server.AddHandler((ushort) RemoteConnection.World, (uint) MsgWorldClientCharacterDeleteRequest,
+            Server.AddHandler((ushort)RemoteConnection.World, (uint)MsgWorldClientCharacterDeleteRequest,
                 new ClientCharacterDeleteRequestHandler());
-            Server.AddHandler((ushort) RemoteConnection.World, (uint) MsgWorldClientCharacterRenameRequest,
+            Server.AddHandler((ushort)RemoteConnection.World, (uint)MsgWorldClientCharacterRenameRequest,
                 new ClientCharacterRenameRequestHandler());
             #endregion
 
-            Server.AddHandler((ushort) RemoteConnection.World, (uint) MsgWorldClientLevelLoadComplete,
+            Server.AddHandler((ushort)RemoteConnection.World, (uint)MsgWorldClientLoginRequest,
+                new ClientLoginRequestHandler());
+
+            Server.AddHandler((ushort)RemoteConnection.World, (uint)MsgWorldClientLevelLoadComplete,
                 new ClientLevelLoadCompleteHandler());
-            Server.AddHandler((ushort) RemoteConnection.World, (uint) MsgWorldClientGameMsg,
+            Server.AddHandler((ushort)RemoteConnection.World, (uint)MsgWorldClientGameMsg,
                 new ClientGameMsgHandler());
-            Server.AddHandler((ushort) RemoteConnection.World, (uint) MsgWorldClientRoutePacket,
+            Server.AddHandler((ushort)RemoteConnection.World, (uint)MsgWorldClientRoutePacket,
                 new ClientRoutePacketHandler());
 
             Server.Start(Config.Current.EncryptPackets);

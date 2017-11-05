@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using ImaginationServer.Common;
 using ImaginationServer.Common.Packets;
-using static ImaginationServer.Common.PacketEnums.WorldServerPacketId;
+using static ImaginationServer.Enums.PacketEnums.WorldServerPacketId;
+using ImaginationServer.Enums;
 
 namespace ImaginationServer.World.Packets.Char
 {
