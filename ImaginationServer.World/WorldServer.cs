@@ -2,8 +2,8 @@
 using ImaginationServer.Common;
 using ImaginationServer.World.Handlers.World;
 using ImaginationServer.World.Replica.Objects;
-using static ImaginationServer.Common.PacketEnums;
-using static ImaginationServer.Common.PacketEnums.ClientWorldPacketId;
+using static ImaginationServer.Enums.PacketEnums;
+using static ImaginationServer.Enums.PacketEnums.ClientWorldPacketId;
 
 namespace ImaginationServer.World
 {
@@ -18,6 +18,8 @@ namespace ImaginationServer.World
             // Validates when the user logs in and is shown the Character List
             Server.AddHandler((ushort) RemoteConnection.World, (uint) MsgWorldClientValidation,
                 new ClientValidationHandler());
+            Server.AddHandler((ushort) RemoteConnection.World, (uint) MsgWorldClientLoginRequest,
+                new ClientLoginRequestHandler());
 
             #region Character Handlers
             Server.AddHandler((ushort) RemoteConnection.World, (uint) MsgWorldClientCharacterListRequest,

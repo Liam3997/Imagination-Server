@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E2B8D9BD-3CB3-4F21-AB17-DF367A4DA92A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ImaginationServer.World</RootNamespace>
+    <AssemblyName>ImaginationServer.World</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Build\Debug\World\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\Build\Release\World\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Imagination Server Logo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Handlers\World\CharacterListRequestHandler.cs" />
+    <Compile Include="Handlers\World\ClientCharacterCreateRequestHandler.cs" />
+    <Compile Include="Handlers\World\ClientCharacterDeleteRequestHandler.cs" />
+    <Compile Include="Handlers\World\ClientCharacterRenameRequestHandler.cs" />
+    <Compile Include="Handlers\World\ClientGameMsgHandler.cs" />
+    <Compile Include="Handlers\World\ClientLevelLoadCompleteHandler.cs" />
+    <Compile Include="Handlers\World\ClientLoginRequestHandler.cs" />
+    <Compile Include="Handlers\World\ClientRoutePacketHandler.cs" />
+    <Compile Include="Handlers\World\ClientValidationHandler.cs" />
+    <Compile Include="Handlers\World\GameMsgHandlers\GameMsgHandler.cs" />
+    <Compile Include="Packets\Char\CharacterRenameResponse.cs" />
+    <Compile Include="Packets\Char\CharacterCreateRequest.cs" />
+    <Compile Include="Packets\Char\CharacterCreateResponse.cs" />
+    <Compile Include="Packets\Char\CharacterDeleteRequest.cs" />
+    <Compile Include="Packets\Char\CharacterDeleteResponse.cs" />
+    <Compile Include="Packets\Char\CharacterListResponse.cs" />
+    <Compile Include="Packets\Char\CharacterRenameRequest.cs" />
+    <Compile Include="Replica\Components\CharacterComponent.cs" />
+    <Compile Include="Replica\Components\ControllablePhysicsComponent.cs" />
+    <Compile Include="Replica\Components\DestructibleComponent.cs" />
+    <Compile Include="Replica\Components\Index36Component.cs" />
+    <Compile Include="Replica\Components\InventoryComponent.cs" />
+    <Compile Include="Replica\Components\RenderComponent.cs" />
+    <Compile Include="Replica\Components\SkillComponent.cs" />
+    <Compile Include="Replica\Objects\PlayerObject.cs" />
+    <Compile Include="WorldServer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Imagination Server Logo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ImaginationServer.Auth\ImaginationServer.Auth.csproj">
+<<<<<<< HEAD
+      <Project>{790BC5EC-B631-443E-B2ED-8C154E84B52B}</Project>
+=======
+      <Project>{790bc5ec-b631-443e-b2ed-8c154e84b52b}</Project>
+>>>>>>> 168b9754f5f283037989ba1c9a0483d8c45e0ca7
+      <Name>ImaginationServer.Auth</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ImaginationServer.Common\ImaginationServer.Common.csproj">
+      <Project>{9E791210-0A94-428D-B483-46EB198942E2}</Project>
+      <Name>ImaginationServer.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ImaginationServer.Core\ImaginationServer.Core.vcxproj">
+      <Project>{b556a656-2380-4e15-9fa9-25d555ae0fcc}</Project>
+      <Name>ImaginationServer.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ImaginationServer.Enums\ImaginationServer.Enums.csproj">
+      <Project>{4d0d6754-e1ef-4f16-912e-60c3ff5ef6ff}</Project>
+      <Name>ImaginationServer.Enums</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ImaginationServer.SQL_DB\ImaginationServer.SQL_DB.csproj">
+      <Project>{99ca5ac9-b973-4cb3-acb7-5aa654bc34a1}</Project>
+      <Name>ImaginationServer.SQL_DB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utils\ImaginationServer.Utils.csproj">
+      <Project>{8A989573-565E-4579-AC64-5FA99F51C092}</Project>
+      <Name>ImaginationServer.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
