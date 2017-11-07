@@ -22,17 +22,17 @@ Unlike (most) other LEGO Universe servers, this uses C#, a managed, Object-Orien
 ### Base
 ImaginationServer.Core - C++ code that provides a wrapper around RakNet  
 ImaginationServer.Common - Base C# server code shared between servers
-### Servers
-ImaginationServer.Auth - Authentication server, and has commands  
-ImaginationServer.Auth.Packets - Login Packets, now in C#!  
-ImaginationServer.World - World server  
-ImaginationServer.World.Packets - Same as .Auth.Packets, except for world
-### Utilities
-sd0 utils: (Broken) sd0 compressor/decompressor (Possibly will be removed soon...)
-### Other
-ImaginationServer.SingleServer - Application that runs the Auth and World servers  
-ImaginationServer.GameLauncher - A launcher/patcher for LU, allows switching boot.cfg with a few clicks (not implemented)  
+### Enums
+ImaginationServer.Enums - Enums that are used throughout the project
+### Launchers
+ImaginationServer.CLILaunch - Application that runs the Auth and World servers  
 ImaginationServer.ControlPanel - Same as single server, but with a GUI (not implemented)
+### Servers
+ImaginationServer.Auth - Authentication server, commands, packets  
+ImaginationServer.SQL_DB - Manages all the SQLite and NHibernate stuff needed for the server  
+ImaginationServer.World - World server and packets
+### Utilities
+None yet...
 
 ## Permissions
 Permission has been granted by MicleBrick, both through Discord and through his licensing choices, to use his original code to build this server  
