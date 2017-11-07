@@ -1,0 +1,59 @@
+﻿using System;
+using ImaginationServer.Common;
+using ImaginationServer.World.Handlers.World;
+using ImaginationServer.World.Replica.Objects;
+using static ImaginationServer.Enums.PacketEnums;
+using static ImaginationServer.Enums.PacketEnums.ClientWorldPacketId;
+
+namespace ImaginationServer.World
+{
+    public class WorldServer
+    {
+        public static LuServer Server { get; private set; }
+
+        public static void Init(string address)
+        {
+            Server = new LuServer(2006, 1000, address);
+
+            // Validates when the user logs in and is shown the Character List
+<<<<<<< HEAD
+            Server.AddHandler((ushort) RemoteConnection.World, (uint) MsgWorldClientValidation,
+=======
+            Server.AddHandler((ushort)RemoteConnection.World, (uint)MsgWorldClientValidation,
+>>>>>>> 168b9754f5f283037989ba1c9a0483d8c45e0ca7
+                new ClientValidationHandler());
+
+            #region Character Handlers
+            Server.AddHandler((ushort)RemoteConnection.World, (uint)MsgWorldClientCharacterListRequest,
+                new CharacterListRequestHandler());
+            Server.AddHandler((ushort)RemoteConnection.World, (uint)MsgWorldClientCharacterCreateRequest,
+                new ClientCharacterCreateRequestHandler());
+            Server.AddHandler((ushort)RemoteConnection.World, (uint)MsgWorldClientCharacterDeleteRequest,
+                new ClientCharacterDeleteRequestHandler());
+            Server.AddHandler((ushort)RemoteConnection.World, (uint)MsgWorldClientCharacterRenameRequest,
+                new ClientCharacterRenameRequestHandler());
+            #endregion
+
+            Server.AddHandler((ushort)RemoteConnection.World, (uint)MsgWorldClientLoginRequest,
+                new ClientLoginRequestHandler());
+
+<<<<<<< HEAD
+            Server.AddHandler((ushort) RemoteConnection.World, (uint) MsgWorldClientLevelLoadComplete,
+=======
+            Server.AddHandler((ushort)RemoteConnection.World, (uint)MsgWorldClientLevelLoadComplete,
+>>>>>>> 168b9754f5f283037989ba1c9a0483d8c45e0ca7
+                new ClientLevelLoadCompleteHandler());
+            Server.AddHandler((ushort)RemoteConnection.World, (uint)MsgWorldClientGameMsg,
+                new ClientGameMsgHandler());
+            Server.AddHandler((ushort)RemoteConnection.World, (uint)MsgWorldClientRoutePacket,
+                new ClientRoutePacketHandler());
+
+            Server.Start(Config.Current.EncryptPackets);
+        }
+
+        public static void Service()
+        {
+            Server.Service();
+        }
+    }
+}

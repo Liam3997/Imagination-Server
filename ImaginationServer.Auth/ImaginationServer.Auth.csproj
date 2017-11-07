@@ -42,9 +42,8 @@
     </StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="StackExchange.Redis.Extensions.Core">
       <HintPath>..\packages\StackExchange.Redis.Extensions.Core.1.1.13.0\lib\net45\StackExchange.Redis.Extensions.Core.dll</HintPath>
@@ -78,6 +77,14 @@
     <ProjectReference Include="..\ImaginationServer.Core\ImaginationServer.Core.vcxproj">
       <Project>{b556a656-2380-4e15-9fa9-25d555ae0fcc}</Project>
       <Name>ImaginationServer.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ImaginationServer.Enums\ImaginationServer.Enums.csproj">
+      <Project>{4d0d6754-e1ef-4f16-912e-60c3ff5ef6ff}</Project>
+      <Name>ImaginationServer.Enums</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ImaginationServer.SQL_DB\ImaginationServer.SQL_DB.csproj">
+      <Project>{99ca5ac9-b973-4cb3-acb7-5aa654bc34a1}</Project>
+      <Name>ImaginationServer.SQL_DB</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

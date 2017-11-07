@@ -4,8 +4,8 @@ using System.IO;
 using System.Text;
 using ImaginationServer.Common.Handlers;
 using ImaginationServer.Common.Handlers.Server;
-using static ImaginationServer.Common.PacketEnums;
-using static ImaginationServer.Common.PacketEnums.ServerPacketId;
+using static ImaginationServer.Enums.PacketEnums;
+using static ImaginationServer.Enums.PacketEnums.ServerPacketId;
 
 namespace ImaginationServer.Common
 {

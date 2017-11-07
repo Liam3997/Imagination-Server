@@ -23,7 +23,7 @@
 
             // Index 2
             bitStream.Write(Flag2);
-            if(Flag2) bitStream.Write(IndexTwo.Level);
+            if (Flag2) bitStream.Write(IndexTwo.Level);
 
             // Index 3
             bitStream.Write(Flag3);
@@ -130,6 +130,7 @@
 
         public class Index3
         {
+            public bool Flag { get; set; }
             public bool Unknown1 { get; set; }
             public bool Unknown2 { get; set; }
         }

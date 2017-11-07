@@ -8,6 +8,7 @@ using ImaginationServer.Common;
 using ImaginationServer.Common.CharacterData;
 using ImaginationServer.Common.Data;
 using ImaginationServer.Common.Packets;
+using ImaginationServer.Enums;
 
 namespace ImaginationServer.World.Packets.Char
 {

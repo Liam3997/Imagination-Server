@@ -2,8 +2,10 @@
 using System.IO;
 using ImaginationServer.Common;
 using ImaginationServer.Common.Handlers;
-using static ImaginationServer.Common.PacketEnums;
-using static ImaginationServer.Common.PacketEnums.WorldServerPacketId;
+using static ImaginationServer.Enums.PacketEnums;
+using static ImaginationServer.Enums.PacketEnums.WorldServerPacketId;
+using ImaginationServer.SQL_DB;
+using ImaginationServer.Enums;
 
 namespace ImaginationServer.World.Handlers.World
 {
@@ -20,7 +22,7 @@ namespace ImaginationServer.World.Handlers.World
                 var character = database.GetCharacter(objectId);
 
                 if (!string.Equals(character.Owner, account.Username, StringComparison.CurrentCultureIgnoreCase))
-                    // Make sure they selected their own character
+                // Make sure they selected their own character
                 {
                     Console.WriteLine("USER {0} SENT OBJECT ID THAT IS NOT ONE OF THEIR CHARACTER'S!!!", client.Username);
                     // TODO: Kick user

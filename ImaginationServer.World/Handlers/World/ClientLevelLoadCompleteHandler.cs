@@ -10,8 +10,10 @@ using ImaginationServer.Common.CharacterData;
 using ImaginationServer.Common.Data;
 using ImaginationServer.Common.Handlers;
 using ImaginationServer.World.Replica.Objects;
-using static ImaginationServer.Common.PacketEnums;
-using static ImaginationServer.Common.PacketEnums.WorldServerPacketId;
+using static ImaginationServer.Enums.PacketEnums;
+using static ImaginationServer.Enums.PacketEnums.WorldServerPacketId;
+using ImaginationServer.SQL_DB;
+using ImaginationServer.Enums;
 
 namespace ImaginationServer.World.Handlers.World
 {
@@ -108,7 +110,7 @@ namespace ImaginationServer.World.Handlers.World
 
         private static WBitStream GenXmlData(Character character)
         {
-            using(var cdclient = new CdClientDb())
+            using (var cdclient = new CdClientDb())
             {
                 var xml = "";
                 xml += "<?xml version=\"1.0\"?>";
@@ -154,6 +156,7 @@ namespace ImaginationServer.World.Handlers.World
 
                 if (character.Missions?.Any() ?? false)
                 {
+                    xml += "<mis>";
                     xml += "<done>";
                     xml = character.Missions.Select(mission => CharacterMission.FromJson(mission)).Aggregate(xml, (current, missionData) => current + $"<m id=\"{missionData.Id}\" cts=\"{missionData.Timestamp}\" cct=\"{missionData.Count}\"/>");
                     xml += "</done>";
