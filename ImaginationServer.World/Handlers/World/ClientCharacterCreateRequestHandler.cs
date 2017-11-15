@@ -45,7 +45,7 @@ namespace ImaginationServer.World.Handlers.World
                             Lot = FindCharShirtId(character.ShirtColor, character.ShirtStyle),
                             Linked = true,
                             Count = 1,
-                            Slot = 0
+                            Slot = 1
                         });
                     character.Items.Add(
                         new BackpackItem
@@ -53,7 +53,7 @@ namespace ImaginationServer.World.Handlers.World
                             Lot = FindCharPantsId(character.PantsColor),
                             Linked = true,
                             Count = 1,
-                            Slot = 1
+                            Slot = 2
                         });
 
                     database.AddCharacter(character); // Add the character to the database.

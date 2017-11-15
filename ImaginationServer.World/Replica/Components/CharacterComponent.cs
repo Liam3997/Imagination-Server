@@ -3,12 +3,12 @@
     public class CharacterComponent : ReplicaComponent
     {
         public bool Flag1 { get; set; }
-        public Index1 IndexOne { get; set; }
+        public Index1 IndexOne { get; set; } = new Index1();
         public bool Flag2 { get; set; }
-        public Index2 IndexTwo { get; set; }
+        public Index2 IndexTwo { get; set; } = new Index2();
         public bool Flag3 { get; set; }
-        public Index3 IndexThree { get; set; }
-        public Index4 IndexFour { get; set; }
+        public Index3 IndexThree { get; set; } = new Index3();
+        public Index4 IndexFour { get; set; } = new Index4();
 
         public override void WriteToPacket(WBitStream bitStream, ReplicaPacketType type)
         {

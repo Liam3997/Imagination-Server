@@ -14,6 +14,7 @@ using static ImaginationServer.Enums.PacketEnums;
 using static ImaginationServer.Enums.PacketEnums.WorldServerPacketId;
 using ImaginationServer.SQL_DB;
 using ImaginationServer.Enums;
+using ImaginationServer.World.Replica.Components;
 
 namespace ImaginationServer.World.Handlers.World
 {
@@ -82,9 +83,24 @@ namespace ImaginationServer.World.Handlers.World
                     playerObject.CharacterComponent.SetStyle(character.HairColor, character.HairStyle, 0, character.ShirtColor, character.PantsColor, 
                         0, 0, character.Eyebrows, character.Eyes, character.Mouth);
 
-                    // TODO: Destructible Component
+                    playerObject.DestructibleComponent.DataFour.Health = 4;
+                    playerObject.DestructibleComponent.DataFour.MaxHealth = 4.0f;
+                    playerObject.DestructibleComponent.DataFour.MaxHealthN = 4.0f;
+                    playerObject.DestructibleComponent.DataFour.Imagination = 20;
+                    playerObject.DestructibleComponent.DataFour.MaxImagination = 20.0f;
+                    playerObject.DestructibleComponent.DataFour.MaxImaginationN = 2.0f;
 
-                    // TODO: Inventory Component
+                    // Inventory Component
+                    foreach (var item in character.Items)
+                    {
+                        playerObject.InventoryComponent.Items.Add(new InventoryComponent.EquipmentData()
+                        {
+                            Id = item.Id,
+                            Lot = item.Lot,
+                            Slot = (ushort) item.Slot
+                            // TODO: Do item.Count and/or item.Linked need to be written here somewhere?
+                        });
+                    }
 
                     // TODO: Object Manager?
 
@@ -104,7 +120,16 @@ namespace ImaginationServer.World.Handlers.World
                         WPacketReliability.ReliableOrdered, 0, client.Address, false);
                 }
 
-                // TODO: Resurrect character
+                // Resurrect character
+                using (var bitStream = new WBitStream())
+                {
+                    bitStream.WriteHeader(RemoteConnection.Client, (uint) MsgClientGameMsg);
+                    bitStream.Write(Character.GetObjectId(character));
+                    bitStream.Write((ushort) 160);
+                    bitStream.Write(true);
+                    WorldServer.Server.Send(bitStream, WPacketPriority.SystemPriority,
+                        WPacketReliability.ReliableOrdered, 0, client.Address, false);
+                }
             }
         }
 
@@ -147,7 +172,7 @@ namespace ImaginationServer.World.Handlers.World
 
                 xml += "<mf/>";
 
-                xml += "<chars cc=\"100\"></char>";
+                xml += "<char cc=\"100\"></char>";
 
                 xml += $"<lvl l=\"{character.Level}\"/>";
 
